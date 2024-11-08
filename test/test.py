@@ -16,13 +16,13 @@ async def test_project(dut):
     # Reset
     dut._log.info("Resetting device")
     dut.rst_n.value = 0
-    await ClockCycles(dut.clk, 10)
+    await ClockCycles(dut.clk, 2)
     dut.rst_n.value = 1
 
     # Test with different `ui_in` values
     for val in [3, 2, 165, 229]:
         dut.ui_in.value = val
-        await ClockCycles(dut.clk, 2)
+        await ClockCycles(dut.clk, 4)
         dut._log.info(f"ui_in: {val}, TDC Output: {dut.uo_out.value}")
 
     dut._log.info("Test complete")
